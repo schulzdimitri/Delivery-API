@@ -70,3 +70,11 @@ class OrdersRepository(OrdersRepositoryInterface):
             { "$inc": new_values }
         )
     
+    def delete_registry(self, object_id: str) -> None:
+        collection = self.__db_connection.get_collection(self.__collection_name)
+        collection.delete_one({ "_id": ObjectId(object_id) })
+    
+    def delete_many_registries(self, doc_filter: dict) -> None:
+        collection = self.__db_connection.get_collection(self.__collection_name)
+        collection.delete_many(doc_filter)
+    

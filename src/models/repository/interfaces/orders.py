@@ -31,3 +31,9 @@ class OrdersRepositoryInterface(ABC):
     
     @abstractmethod
     def edit_registry_with_increment(self, object_id: str, new_values: dict) -> None: pass
+
+    @abstractmethod
+    def delete_registry(self, object_id: str) -> None: pass
+
+    @abstractmethod
+    def delete_many_registries(self, doc_filter: dict) -> None: pass
