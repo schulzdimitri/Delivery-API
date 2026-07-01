@@ -5,7 +5,7 @@ import os
 class DBConnection:
     def __init__(self) -> None:
         load_dotenv()
-        self.__connection_string = f"mongodb://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@${os.getenv('DB_HOST')}:${os.getenv('DB_PORT')}/?authSource=admin"
+        self.__connection_string = f"mongodb://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/?authSource=admin"
         self.__database_name = os.getenv('DB_NAME')
         self.__client = None
         self.__db_connection = None
