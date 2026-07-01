@@ -5,6 +5,7 @@ db_connection = DBConnection()
 db_connection.connect_to_db()
 conn = db_connection.get_db_connection()
 
+@pytest.mark.skip(reason="Interação com o banco de dados")
 def test_insert_document():
     orders_repository = OrdersRepository(conn)
     my_doc = { "name": "Company Inc", "address": "Highway 37" }
