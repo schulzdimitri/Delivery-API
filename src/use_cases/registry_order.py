@@ -1,16 +1,18 @@
 from src.models.repository.interfaces.orders import OrdersRepositoryInterface
-from src.main.http_types.http_request import HttpResponse
+from src.main.http_types.http_response import HttpResponse
+from src.main.http_types.http_request import HttpRequest
 from datetime import datetime
 
 class RegistryOrder:
     def __init__(self, order_repository: OrdersRepositoryInterface) -> None:
-        self.order_repository = order_repository
+        self.__order_repository = order_repository
 
     def registry(self, http_request: HttpRequest) -> HttpResponse:
         try:
             body = http_request.body
             new_order = self.__format_new_order(body)
             self.__registry_order(new_order)
+
             return self.__format_response()
         except Exception as exception:
             return HttpResponse(
@@ -24,7 +26,7 @@ class RegistryOrder:
         return new_order
 
     def __registry_order(self, new_order: dict) -> dict:
-        self.__orders_repository.insert_document(new_order)
+        self.__order_repository.insert_document(new_order)
     
     def __format_response(self) -> HttpResponse:
         return HttpResponse(
