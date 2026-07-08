@@ -16,3 +16,5 @@ class DBConnection:
         
     def get_db_connection(self):
         return self.__db_connection
+
+db_connection = DBConnection()
