@@ -30,4 +30,16 @@ def test_insert_document():
     repository.insert_document(doc)
 
     assert collection.insert_one_attributes["dict"] == doc
+
+def test_select_many_with_properties():
+    collection = CollectionMock()
+    db_connection = DBCollectionMock(collection)
+    repository = OrdersRepository(db_connection)
+
+    doc_filter = { "something": "data" }
+
+    repository.select_many_with_properties(doc_filter)
+
+    assert collection.find_attributes["args"][0] == doc_filter
+    assert collection.find_attributes["args"][1] == { "_id": 0, "cupom": 1 }
     
