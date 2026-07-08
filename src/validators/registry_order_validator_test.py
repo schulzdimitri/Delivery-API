@@ -1,5 +1,6 @@
 import pytest
 from src.validators.registry_order_validator import registry_order_validator
+from src.errors.types.http_unprocessable_entity import HttpUnprocessableEntityError
 
 def test_registry_order_validator():
     body = {
@@ -29,5 +30,6 @@ def test_registry_order_validator_with_errors():
         }
     }
     
-    with pytest.raises(ValueError):
+    with pytest.raises(HttpUnprocessableEntityError):
         registry_order_validator(body_with_error)
+
