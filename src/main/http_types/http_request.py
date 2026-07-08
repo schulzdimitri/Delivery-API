@@ -3,10 +3,12 @@ class HttpRequest:
         self, 
         body: dict = None, 
         headers: dict = None, 
-        params: dict = None
+        path_params: dict = None,
+        query_params: dict = None
     ) -> None:
         self.body = body
         self.headers = headers
-        self.params = params
+        self.path_params = path_params
+        self.query_params = query_params
         
         
