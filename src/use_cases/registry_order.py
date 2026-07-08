@@ -3,6 +3,7 @@ from src.main.http_types.http_response import HttpResponse
 from src.main.http_types.http_request import HttpRequest
 from datetime import datetime
 from src.validators.registry_order_validator import registry_order_validator
+from src.errors.error_handler import error_handler
 
 class RegistryOrder:
     def __init__(self, order_repository: OrdersRepositoryInterface) -> None:
@@ -18,10 +19,7 @@ class RegistryOrder:
 
             return self.__format_response()
         except Exception as exception:
-            return HttpResponse(
-                body={ "error": str(exception) },
-                status_code=400
-            )
+            return error_handler(exception)
 
     def __validate_body(self, body: dict) -> None:
         registry_order_validator(body)
