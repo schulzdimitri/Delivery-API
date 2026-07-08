@@ -21,8 +21,8 @@ def test_registry_order():
         "address": "Rua A, 123",
         "cupom": False,
         "items": [
-            {"item": "Chocolate", "quantidade": 2}, 
-            {"item": "Refrigerante", "quantidade": 1}
+            {"item": "Chocolate", "quantity": 2}, 
+            {"item": "Refrigerante", "quantity": 1}
         ]
     }
 
@@ -46,5 +46,5 @@ def test_registry_order_error():
     
     http_request = HttpRequest(body={})
     response = registry_order.registry(http_request)
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert "error" in response.body
